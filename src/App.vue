@@ -2,6 +2,10 @@
   <b-container class="bv-example-row">
     <b-row>
       <b-col>
+        <button @click="showSana = !showSana">ko'rsat</button>
+        <Sanash v-if="showSana" />
+
+        <input type="text" v-model="showSana" />
         <p class="h2">
           <strong @click="tableniOzgartir()">Class schedules</strong>
         </p>
@@ -29,11 +33,31 @@
 <script>
 import Table from "@/components/Table";
 import Modal from "@/components/Modal";
+import Sanash from "@/components/Sanash";
 
 export default {
-  components: { Table, Modal },
+  beforeCreate() {
+    console.log("App beforeCreate");
+  },
+  created() {
+    console.log("App created");
+  },
+  beforeMount() {
+    console.log("App beforeMount");
+  },
+  mounted() {
+    console.log("App mounted");
+  },
+  beforeUpdate() {
+    console.log("App beforeUpdate");
+  },
+  updated() {
+    console.log("App updated");
+  },
+  components: { Table, Modal, Sanash },
   data() {
     return {
+      showSana: false,
       fields: [
         { key: "age", label: "Yosh" },
         { key: "avatar", label: "Avatar" },

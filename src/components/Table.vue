@@ -3,7 +3,8 @@
     <b-row class="my-2 mx-1">
       <b-col>
         <b-input-group prepend="@" class="w-50">
-          <b-form-input placeholder="Search"></b-form-input>
+          {{ ism }}
+          <b-form-input placeholder="Search" v-model="ism"></b-form-input>
         </b-input-group>
       </b-col>
       <b-col style="text-align: right">
@@ -55,11 +56,18 @@ export default {
       default: () => []
     }
   },
+  watch: {
+    ism(newVal, oldVal) {
+      console.log("ism o'zgardi: ", oldVal, " => ", newVal);
+      this.ism = newVal.toUpperCase();
+    }
+  },
   data() {
     return {
       rows: 1,
       perPage: 10,
-      currentPage: 1
+      currentPage: 1,
+      ism: ""
     };
   },
   methods: {
@@ -75,6 +83,9 @@ export default {
     },
     log() {
       console.log("jadvaldan log");
+    },
+    handleInput(e) {
+      this.ism = e.toUpperCase();
     }
   }
 };
