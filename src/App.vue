@@ -2,9 +2,31 @@
   <b-container class="bv-example-row">
     <b-row>
       <b-col>
-        <button @click="showSana = !showSana">ko'rsat</button>
-        <Sanash v-if="showSana" />
-
+        <p>Date: {{ date }}</p>
+        <input type="text" :value="date" @input.prevent.stop="kiritish" />
+        <!-- Malumot chop etish -->
+        Qandaydir ma'lumot, 123, 20.10.2021
+        {{ malumot }}
+        <div v-html="malumot"></div>
+        <!-- SHart -->
+        <div v-show="false">BIror ma'lumot keltirilgan1</div>
+        <div v-if="false">BIror ma'lumot keltirilgan2</div>
+        <div style="color: green" v-if="isOnline == true">Online</div>
+        <div style="color: red" v-else>Online emas</div>
+        <!-- SIKL -->
+        <!-- {{items}}
+        <ul>
+          <li v-for="(item, idx) in items" :key="idx">
+            <div>TR: #{{ idx+1 }}</div>
+            <div>ISM: {{item.first_name}}</div>
+            <div>Yoshi: {{ item.age }}</div>
+            <hr />
+          </li>
+        </ul>-->
+        <!-- Computed -->
+        <button @click="addNew">Yangi</button>
+        <p>{{ umumiySoni }} ta</p>
+        <p>Yoshlar: {{ sumAge / umumiySoni}}</p>
         <input type="text" v-model="showSana" />
         <p class="h2">
           <strong @click="tableniOzgartir()">Class schedules</strong>
@@ -33,30 +55,27 @@
 <script>
 import Table from "@/components/Table";
 import Modal from "@/components/Modal";
-import Sanash from "@/components/Sanash";
 
 export default {
-  beforeCreate() {
-    console.log("App beforeCreate");
+  components: { Table, Modal },
+  computed: {
+    sumAge() {
+      return this.items.reduce((sum, item) => {
+        return sum + item.age;
+      }, 0);
+    }
   },
-  created() {
-    console.log("App created");
+  watch: {
+    items() {
+      this.umumiySoni = this.items.length;
+      this.confirm = true;
+    }
   },
-  beforeMount() {
-    console.log("App beforeMount");
-  },
-  mounted() {
-    console.log("App mounted");
-  },
-  beforeUpdate() {
-    console.log("App beforeUpdate");
-  },
-  updated() {
-    console.log("App updated");
-  },
-  components: { Table, Modal, Sanash },
   data() {
     return {
+      date: "",
+      umumiySoni: 0,
+      malumot: "<b>Istalgan ma'lumot</b>",
       showSana: false,
       fields: [
         { key: "age", label: "Yosh" },
@@ -86,10 +105,31 @@ export default {
         }
       ],
 
-      modalOpen: false
+      modalOpen: false,
+      isOnline: false
     };
   },
   methods: {
+    kiritish($e) {
+      console.log($e);
+      let str = $e.target.value;
+      let validated_str = "";
+      for (let index = 0; index < str.length; index++) {
+        const element = str[index];
+        if (element == "a" || element == "b") {
+          validated_str += element;
+        }
+      }
+      this.date = validated_str;
+    },
+    addNew() {
+      this.items.push({
+        age: 89,
+        first_name: "Geneva",
+        last_name: "Wilson",
+        avatar: require("@/assets/abdusattor.png")
+      });
+    },
     addItem(data) {
       // console.log(data);
       //1-usul
