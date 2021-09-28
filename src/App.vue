@@ -1,169 +1,427 @@
 <template>
-  <b-container class="bv-example-row">
-    <b-row>
-      <b-col>
-        <p>Date: {{ date }}</p>
-        <input type="text" :value="date" @input.prevent.stop="kiritish" />
-        <!-- Malumot chop etish -->
-        Qandaydir ma'lumot, 123, 20.10.2021
-        {{ malumot }}
-        <div v-html="malumot"></div>
-        <!-- SHart -->
-        <div v-show="false">BIror ma'lumot keltirilgan1</div>
-        <div v-if="false">BIror ma'lumot keltirilgan2</div>
-        <div style="color: green" v-if="isOnline == true">Online</div>
-        <div style="color: red" v-else>Online emas</div>
-        <!-- SIKL -->
-        <!-- {{items}}
-        <ul>
-          <li v-for="(item, idx) in items" :key="idx">
-            <div>TR: #{{ idx+1 }}</div>
-            <div>ISM: {{item.first_name}}</div>
-            <div>Yoshi: {{ item.age }}</div>
-            <hr />
-          </li>
-        </ul>-->
-        <!-- Computed -->
-        <button @click="addNew">Yangi</button>
-        <p>{{ umumiySoni }} ta</p>
-        <p>Yoshlar: {{ sumAge / umumiySoni}}</p>
-        <input type="text" v-model="showSana" />
-        <p class="h2">
-          <strong @click="tableniOzgartir()">Class schedules</strong>
-        </p>
-        <b-card no-body>
-          <div>
-            <Table
-              ref="jadval"
-              :odamlar="items"
-              :fields="fields"
-              @modalni-och="modalniOchish()"
-              @delete-item="deleteItem($event)"
-            />
-            <Modal
-              :value="modalOpen"
-              @modal-yopildi="modalOpen = false"
-              @yangi-qosh="addItem($event)"
-            />
+  <div>
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <img class="navbar__brand" src="/logo/frulogo.svg" alt />
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Главная</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">О компании</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Продукции</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Контакты</a>
+              </li>
+              <li class="nav-item dropdown">
+                <b-dropdown size="lg" variant="link" toggle-class="text-decoration-none" no-caret>
+                  <template #button-content>
+                    <div
+                      style="width: 33px; height: 33px; padding: 7px; border-radius: 100%; border: 1px solid #93c92b; border-radius: 50%; line-height: 0.8"
+                    >
+                      <img src="/logo/menu.svg" />
+                    </div>
+                  </template>
+                  <b-dropdown-item href="#">Action</b-dropdown-item>
+                  <b-dropdown-item href="#">Another action</b-dropdown-item>
+                  <b-dropdown-item href="#">Something else here...</b-dropdown-item>
+                </b-dropdown>
+              </li>
+            </ul>
           </div>
-        </b-card>
-      </b-col>
-    </b-row>
-  </b-container>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown2">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link ps-0" href="#">
+                  <div class="social-link">
+                    <img src="/logo/instagram.svg" />
+                  </div>
+                </a>
+                <a class="nav-link ps-0" href="#">
+                  <div class="social-link">
+                    <img src="/logo/facebook.svg" />
+                  </div>
+                </a>
+                <a class="nav-link ps-0" href="#">
+                  <div class="social-link">
+                    <img src="/logo/youtube.svg" />
+                  </div>
+                </a>
+              </li>
+              <li class="nav-item" id="navflex">
+                <a class="nav-link pb-0" id="fome" href="#">Связаться с нами</a>
+                <a class="nav-link pt-0" href="#">+998 90 995 5959</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <div class="intro">
+      <div class="container">
+        <div class="row" id="ai">
+          <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+            <div class="intro__title">Производство сублимированных фруктов в Узбекистане</div>
+            <div
+              class="intro__subtitle"
+            >Компания Frutata — новичок на рынке Узбекистана, однако несмотря на свою короткую историю мы являемся одним из немногих производителей</div>
+            <div class="intro__more">Подробнее</div>
+            <div class="intro__flex__content">
+              <div class="intro__stat">
+                <div class="stat__bignum">21+</div>
+                <div class="stat__txt">
+                  Разновидностей
+                  Frutata
+                </div>
+                <img class="ellipse" src="/img/Ellipse.png" alt />
+              </div>
+
+              <div class="intro__stat">
+                <div class="stat__bignum">100%</div>
+                <div class="stat__txt">
+                  Экологический
+                  продукт
+                </div>
+                <img class="ellipse2" src="/img/Ellipse.png" alt />
+              </div>
+            </div>
+          </div>
+          <div
+            id="jimbo"
+            class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6"
+            style="text-align: end;"
+          >
+            <img class="jimbe" src="/img/1.png" alt />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="about">
+      <div class="container">
+        <div class="cheer">
+          <div class="row">
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 col-xl-3" id="likey">
+              <img class="tt" src="/logo/frulogo.svg" alt />
+            </div>
+            <div id="really" class="col-xs-12 col-sm-9 col-md-9 col-lg-9 col-xl-9">
+              <div class="about__title">О компании</div>
+              <div
+                class="about__txt"
+              >Компания Frutata — новичок на рынке Узбекистана, однако несмотря на свою короткую историю мы являемся одним из немногих производителей сублимированных фруктов, который реализует свою продукцию не только на отечетсвенном рынке, но и поставляет его за рубеж!</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide">
+      <div class="container">
+        <div class="slide__content row">
+          <div class="slide__title col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+            Продукции
+            <span class="ontheground">Frutata</span>
+          </div>
+          <a
+            href="#"
+            class="slide__more col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6"
+          >Все продукции</a>
+        </div>
+      </div>
+      <div class="image-slider swiper-container" style="padding: 10px 10px;">
+        <div class="image-slider__wrapper swiper-wrapper">
+          <carousel items="5.5">
+            <div class="image-slider__slide swiper-slide" style="margin-right: 20px">
+              <div id="bp" class="image-slider__image card">
+                <div class="kimlip">
+                  <img class="card__img" src="/img/2.png" alt />
+                </div>
+                <div class="card__cont">
+                  <div class="card__title">В пакетная упаковка</div>
+                  <div class="card__txt">Грушевые чипсы</div>
+                  <div class="card__more">Подробнее</div>
+                </div>
+              </div>
+            </div>
+            <div class="image-slider__slide swiper-slide" style="margin-right: 20px">
+              <div id="bp" class="image-slider__image card">
+                <div class="kimlip">
+                  <img class="card__img" src="/img/3.png" alt />
+                </div>
+                <div class="card__cont">
+                  <div class="card__title">В пакетная упаковка</div>
+                  <div class="card__txt">Микс «Персик, груша, инжир»</div>
+                  <div class="card__more">Подробнее</div>
+                </div>
+              </div>
+            </div>
+            <div class="image-slider__slide swiper-slide" style="margin-right: 20px">
+              <div id="bp" class="image-slider__image card">
+                <div class="kimlip">
+                  <img class="card__img" src="/img/4.png" alt />
+                </div>
+                <div class="card__cont">
+                  <div class="card__title">В пакетная упаковка</div>
+                  <div class="card__txt">Фруктовый микс «Слива, яблоко, абрикос»</div>
+                  <div class="card__more">Подробнее</div>
+                </div>
+              </div>
+            </div>
+            <div class="image-slider__slide swiper-slide" style="margin-right: 20px">
+              <div id="bp" class="image-slider__image card">
+                <div class="kimlip">
+                  <img class="card__img" src="/img/2.png" alt />
+                </div>
+                <div class="card__cont">
+                  <div class="card__title">В пакетная упаковка</div>
+                  <div class="card__txt">Грушевые чипсы</div>
+                  <div class="card__more">Подробнее</div>
+                </div>
+              </div>
+            </div>
+            <div class="image-slider__slide swiper-slide" style="margin-right: 20px">
+              <div id="bp" class="image-slider__image card">
+                <div class="kimlip">
+                  <img class="card__img" src="/img/3.png" alt />
+                </div>
+                <div class="card__cont">
+                  <div class="card__title">В пакетная упаковка</div>
+                  <div class="card__txt">Микс «Персик, груша, инжир»</div>
+                  <div class="card__more">Подробнее</div>
+                </div>
+              </div>
+            </div>
+            <div class="image-slider__slide swiper-slide" style="margin-right: 20px">
+              <div id="bp" class="image-slider__image card">
+                <div class="kimlip">
+                  <img class="card__img" src="/img/4.png" alt />
+                </div>
+                <div class="card__cont">
+                  <div class="card__title">В пакетная упаковка</div>
+                  <div class="card__txt">Фруктовый микс «Слива, яблоко, абрикос»</div>
+                  <div class="card__more">Подробнее</div>
+                </div>
+              </div>
+            </div>
+          </carousel>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="talk">
+        <div class="container">
+            <div class="talk__content row">
+                <div class="talk__title col-xs-12	col-sm-12	col-md-6	col-lg-6	col-xl-6">Говоря о <span class="ontheground">Frutata</span></div>
+                <div class="talk__txt col-xs-12	col-sm-12	col-md-6	col-lg-6	col-xl-6">Компания Frutata — новичок на рынке Узбекистана, однако несмотря на свою короткую историю мы являемся одним.</div>
+            </div>
+            <div id="around" class="row" style="align-items: center;">
+                <div class="col-xs-12	col-sm-12	col-md-4	col-lg-3	col-xl-3" id="del">
+                    <div class="pads">
+                        <div class="pad">
+                            <div class="pad__img"><img src="./logo/leaf.png" alt=""></div>
+                            <div class="pad__txt">Вся польза и вкус сочной спелой груши в одном пакетике, который.</div>
+                        </div>
+                        <div class="pad">
+                            <div class="pad__img"><img src="./logo/heart.png" alt=""></div>
+                            <div class="pad__txt">Вся польза и вкус сочной спелой груши в одном пакетике, который.</div>
+                        </div>
+                        <div class="pad">
+                            <div class="pad__img"><img src="./logo/bottle.png" alt=""></div>
+                            <div class="pad__txt">Вся польза и вкус сочной спелой груши в одном пакетике, который.</div>
+                        </div>
+                    </div>
+                </div>
+                <div id="latata" class="col-xs-12	col-sm-12	col-md-4	col-lg-6	col-xl-6" style="text-align: center;">
+                    <img id="lana" src="/img/5.png" alt="">
+                </div>
+                <div class="col-xs-12	col-sm-12	col-md-4	col-lg-3	col-xl-3" id="del">
+                    <div class="pads">
+                        <div class="pad">
+                            <div class="pad__img"><img src="./logo/heart.png" alt=""></div>
+                            <div class="pad__txt">Вся польза и вкус сочной спелой груши в одном пакетике, который.</div>
+                        </div>
+                        <div class="pad">
+                            <div class="pad__img"><img src="./logo/bottle.png" alt=""></div>
+                            <div class="pad__txt">Вся польза и вкус сочной спелой груши в одном пакетике, который.</div>
+                        </div>
+                        <div class="pad">
+                            <div class="pad__img"><img src="./logo/leaf.png" alt=""></div>
+                            <div class="pad__txt">Вся польза и вкус сочной спелой груши в одном пакетике, который.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>-->
+
+    <!-- <div class="pack">
+        <div class="container">
+            <div class="row justify-content-center">
+
+                <div class="col-xs-12	col-sm-6	col-md-6	col-lg-6	col-xl-6">
+
+                    <div id="lleft" class="tab row">
+
+                        <div class="tab__img col-xs-12	col-sm-12	col-md-6	col-lg-6	col-xl-6">
+                            <img class="cry" src="/img/6.png" alt="">
+                        </div>
+
+                            <div class="tab__content col-xs-12	col-sm-12	col-md-6	col-lg-6	col-xl-6">
+                                <div class="tab__title">Баночная упаковка</div>
+                                <div class="tab__txt">Компания Frutata — новичок на рынке Узбекистана, однако несмотря на свою короткую историю мы являемся одним из немногих производителей сублимированных фруктов.</div>
+                            </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-xs-12   col-sm-6	col-md-6	col-lg-6	col-xl-6">
+
+                    <div id="rright" class="tab row">
+
+                        <div class="tab__img col-xs-12	col-sm-6	col-md-6	col-lg-6	col-xl-6">
+                            <img class="cry" src="/img/7.png" alt="">
+                        </div>
+
+                            <div class="tab__content col-xs-12	col-sm-6	col-md-6	col-lg-6	col-xl-6">
+                                <div class="tab__title">Пакетная упаковка</div>
+                                <div class="tab__txt">Новичок на рынке Узбекистана, однако несмотря на свою короткую немногих производителей сублимированных фруктов.</div>
+                            </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>-->
+
+    <!-- <div class="partners">
+        <div class="container">
+            <div class="partners__content row">
+                <div class="partners__title col-xs-12	col-sm-12	col-md-6	col-lg-6	col-xl-6">Наши <span class="ontheground">партнёры</span></div>
+                <div class="partners__txt col-xs-12	col-sm-12	col-md-6	col-lg-6	col-xl-6">Компания Frutata — новичок на рынке Узбекистана, однако несмотря на свою короткую историю мы являемся одним.</div>
+            </div>
+            <div class="row" id="yes">
+                <div id="cherry" class="col-xs-3	col-sm-3	col-md-3	col-lg-3	col-xl-3">
+                    <div class="cardo">
+                        <img src="./logo/frulogo.svg" alt="">
+                    </div>
+                </div>
+                <div class="col-xs-3	col-sm-3	col-md-3	col-lg-3	col-xl-3" id="cherry">
+                    <div  class="cardo">
+                        <img src="./logo/fruitdorlogo.png" alt="">
+                    </div>
+                </div>
+                <div class="col-xs-3	col-sm-3	col-md-3	col-lg-3	col-xl-3" id="cherry">
+                    <div  class="cardo">
+                        <img src="./logo/organicslogo.png" alt="">
+                    </div>
+                </div>
+                <div class="col-xs-3	col-sm-3	col-md-3	col-lg-3	col-xl-3" id="cherry">
+                    <div  class="cardo">
+                        <img src="./logo/korzinkalogo.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>-->
+
+    <!-- <div class="contacts">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12	col-sm-12	col-md-6	col-lg-6	col-xl-6" id="piri">
+                    <div class="row">
+                        <div class="col-xs-12	col-sm-12	col-md-6	col-lg-6	col-xl-6" id="pikaboo">Контакты</div>
+                            <div class="col-xs-12	col-sm-12	col-md-6	col-lg-6	col-xl-6" id="forewer">
+                                <div class="svaz">Связаться с нами:</div>
+                                <div class="num">+998 90 995 5959</div>
+                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12	col-sm-12	col-md-6	col-lg-6	col-xl-6">
+                            <div class="nam">
+                                Мы в соц. сетях:
+                            </div>
+                            <div class="socs d-flex">
+                                <a class="nav-link ps-0" href="#"><i style="color: white; background: #93C92B;" class="fab fa-instagram"></i></i></a>
+                                <a class="nav-link" href="#"><i style="color: white; background: #93C92B;" class="fab fa-facebook-f"></i></i></a>
+                                <a class="nav-link" href="#"><i style="color: white; background: #93C92B;" class="fab fa-youtube"></i></i></a>
+                            </div>
+                        </div>
+                            <div id="easter" class="col-xs-12	col-sm-12	col-md-6	col-lg-6	col-xl-6">
+                                <div class="svaz">Адрес:</div>
+                                <div class="num" style="max-width: 60%;">Махалля Файзабад, улица, Fargona Road</div>
+                            </div>
+                    </div>
+                </div>
+                <div class="col-xs-12	col-sm-12	col-md-6	col-lg-6	col-xl-6" >
+                    <iframe id="map" src="https://yandex.ua/map-widget/v1/?um=constructor%3Aef40a104c6d1961cedc297b642f672fee90612d0bf511eba48c920a59bd9de45&amp;source=constructor" width="720" height="480" frameborder="0"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>-->
+
+    <!-- <div class="footer">
+        <div class="container">
+            <div id="agustd" class="row">
+                <div class="col-xs-4	col-sm-4	col-md-2	col-lg-2	col-xl-2" id="loona">
+                    <img class="likey" src="./logo/frutatalogowhite.png" alt="">
+                </div>
+                <div class="col-xs-4	col-sm-4	col-md-2	col-lg-2	col-xl-2" id="loona">
+                    <a href="#" class="foot__txt">О компании</a>
+                    <a href="#" class="foot__txt">Продукции</a>
+                    <a href="#" class="foot__txt">Производство</a>
+                </div>
+                <div class="col-xs-4	col-sm-4	col-md-2	col-lg-2	col-xl-2" id="loona">
+                    <a href="#" class="foot__txt">Новости</a>
+                    <a href="#" class="foot__txt">Контакты</a>
+                    <a href="#" class="foot__txt">Поставщикам</a>
+                </div>
+                <div class="col-xs-4	col-sm-4	col-md-2	col-lg-2	col-xl-2" id="loona">
+                    <a href="#" class="foot__txt">Адрес:</a>
+                    <a href="#" class="foot__txt">Махалля Файзабад, улица, Fargona Road</a>
+                </div>
+                <div class="col-xs-4	col-sm-4	col-md-2	col-lg-2	col-xl-2" id="loona">
+                    <a href="#" class="foot__txt">Связаться с нами:</a>
+                    <a href="#" class="foot__txt">+998 90 995 5959</a>
+                </div>
+                <div class="col-xs-4	col-sm-4	col-md-2	col-lg-2	col-xl-2" id="loona">
+                    <a href="#" class="foot__txt">Мы в соц. сетях:</a>
+                    <div class="socs2 d-flex" >
+                        <a class="nav-link ps-0" href="#"><i style="color: #689E00;;" class="fab fa-instagram"></i></i></a>
+                        <a class="nav-link" href="#"><i style="color: #689E00;;" class="fab fa-facebook-f"></i></i></a>
+                        <a class="nav-link" href="#"><i style="color: #689E00;;" class="fab fa-youtube"></i></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>-->
+  </div>
 </template>
 
 <script>
-import Table from "@/components/Table";
-import Modal from "@/components/Modal";
-
+import carousel from "vue-owl-carousel";
 export default {
-  components: { Table, Modal },
-  computed: {
-    sumAge() {
-      return this.items.reduce((sum, item) => {
-        return sum + item.age;
-      }, 0);
-    }
-  },
-  watch: {
-    items() {
-      this.umumiySoni = this.items.length;
-      this.confirm = true;
-    }
-  },
-  data() {
-    return {
-      date: "",
-      umumiySoni: 0,
-      malumot: "<b>Istalgan ma'lumot</b>",
-      showSana: false,
-      fields: [
-        { key: "age", label: "Yosh" },
-        { key: "avatar", label: "Avatar" },
-        { key: "first_name", label: "Ismi" },
-        { key: "last_name", label: "Familyasi" },
-        { key: "actions", label: "Buyruqlar" }
-      ],
-      items: [
-        {
-          age: 401,
-          first_name: "Dickerson",
-          last_name: "Macdonald",
-          avatar: require("@/assets/abdusattor.png")
-        },
-        {
-          age: 21,
-          first_name: "Larsen",
-          last_name: "Shaw",
-          avatar: require("@/assets/abdusattor.png")
-        },
-        {
-          age: 89,
-          first_name: "Geneva",
-          last_name: "Wilson",
-          avatar: require("@/assets/abdusattor.png")
-        }
-      ],
-
-      modalOpen: false,
-      isOnline: false
-    };
-  },
-  methods: {
-    kiritish($e) {
-      console.log($e);
-      let str = $e.target.value;
-      let validated_str = "";
-      for (let index = 0; index < str.length; index++) {
-        const element = str[index];
-        if (element == "a" || element == "b") {
-          validated_str += element;
-        }
-      }
-      this.date = validated_str;
-    },
-    addNew() {
-      this.items.push({
-        age: 89,
-        first_name: "Geneva",
-        last_name: "Wilson",
-        avatar: require("@/assets/abdusattor.png")
-      });
-    },
-    addItem(data) {
-      // console.log(data);
-      //1-usul
-      // const new_item = {
-      //   age: this.item.age,
-      //   first_name: this.item.first_name,
-      //   last_name: this.item.last_name,
-      //   avatar: this.item.avatar
-      // };
-      // 2-usul
-      // console.log(JSON.stringify(this.item));
-      // console.log(this.item);
-      const new_item_string = JSON.stringify(data);
-      const new_item = JSON.parse(new_item_string);
-      console.log(new_item);
-      this.items.push(new_item);
-      //3-usul
-      // const new_item = Object.assign({}, this.item);
-      // this.items.push(new_item);
-      //4-usul
-      // console.log({ ...this.item });
-      // const new_item = { ...this.item };
-      // this.items.push(new_item);
-    },
-    modalniOchish() {
-      console.log("ochish haqida xabar keldi");
-      this.modalOpen = true;
-    },
-    deleteItem(index) {
-      this.items.splice(index, 1);
-    },
-    tableniOzgartir() {
-      this.$refs.jadval.log();
-    }
-  }
+  components: { carousel }
 };
 </script>
