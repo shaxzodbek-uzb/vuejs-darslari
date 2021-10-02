@@ -1,6 +1,10 @@
 <template>
   <div>
     <Header />
+    <p class="p-4">
+      <Increment />
+      {{ countWithText }}
+    </p>
     <intro />
     <about-company />
     <product-slider />
@@ -21,6 +25,8 @@ import Header from "./components/Header";
 import Intro from "./components/Intro";
 import ProductSlider from "./components/ProductSlider";
 import Pack from "./components/Pack";
+import Increment from "./components/Increment";
+import { mapGetters } from "vuex";
 
 export default {
   components: {
@@ -31,7 +37,11 @@ export default {
     Header,
     Intro,
     ProductSlider,
-    Pack
+    Pack,
+    Increment
+  },
+  computed: {
+    ...mapGetters(["increment/countWithText"])
   }
 };
 </script>
