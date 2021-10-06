@@ -4,6 +4,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import Vue from 'vue';
 import App from './App.vue';
+import router from './router/';
 import store from './store/';
 
 Vue.config.productionTip = false
@@ -16,8 +17,8 @@ require('./assets/css/style.css');
 require('./assets/css/media.css');
 
 
-
 new Vue({
   render: h => h(App),
   store,
+  router
 }).$mount('#app')

@@ -20,12 +20,12 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
             <li v-for="(link, index) in links" :key="index" class="nav-item">
-              <a
+              <router-link
                 class="nav-link"
                 :class="{'active': index == activeIndex}"
                 aria-current="page"
-                :href="link.link"
-              >{{ link.title }}</a>
+                :to="link.link"
+              >{{ link.title }}</router-link>
             </li>
             <li class="nav-item dropdown">
               <b-dropdown size="lg" variant="link" toggle-class="text-decoration-none" no-caret>
@@ -79,10 +79,10 @@ export default {
   data() {
     return {
       links: [
-        { link: "#", title: "Главная" },
-        { link: "#", title: "О компании" },
-        { link: "#", title: "Продукции" },
-        { link: "#", title: "Контакты" }
+        { link: "/", title: "Главная" },
+        { link: "/about-company", title: "О компании" },
+        { link: "/products", title: "Продукции" },
+        { link: "/contacts", title: "Контакты" }
       ],
       activeIndex: 3
     };

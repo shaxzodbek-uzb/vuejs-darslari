@@ -13,6 +13,7 @@
       <div class="image-slider__wrapper swiper-wrapper">
         <carousel items="5">
           <div
+            @click="$router.push({ path: `products/${item.id}`})"
             class="image-slider__slide swiper-slide"
             style="margin-right: 20px"
             v-for="(item, index) in items"
@@ -44,56 +45,67 @@ export default {
     return {
       items: [
         {
+          id: 1,
           photo: "/img/2.png",
           title: "В пакетная упаковка",
           text: "Фруктовый микс «Слива, яблоко, абрикос»"
         },
         {
+          id: 2,
           photo: "/img/3.png",
           title: "В пакетная упаковка",
           text: "Микс «Персик, груша, инжир»"
         },
         {
+          id: 3,
           photo: "/img/4.png",
           title: "В пакетная упаковка",
           text: "Грушевые чипсы"
         },
         {
+          id: 4,
           photo: "/img/2.png",
           title: "В пакетная упаковка",
           text: "Фруктовый микс «Слива, яблоко, абрикос»"
         },
         {
+          id: 5,
           photo: "/img/3.png",
           title: "В пакетная упаковка",
           text: "Фруктовый микс «Слива, яблоко, абрикос»"
         },
         {
+          id: 1,
           photo: "/img/4.png",
           title: "В пакетная упаковка",
           text: "Грушевые чипсы"
         },
         {
+          id: 1,
           photo: "/img/2.png",
           title: "В пакетная упаковка",
           text: "Фруктовый микс «Слива, яблоко, абрикос»"
         },
         {
+          id: 1,
           photo: "/img/3.png",
           title: "В пакетная упаковка",
           text: "Фруктовый микс «Слива, яблоко, абрикос»"
         },
         {
+          id: 1,
           photo: "/img/4.png",
           title: "В пакетная упаковка",
           text: "Грушевые чипсы"
         },
         {
+          id: 1,
           photo: "/img/2.png",
           title: "В пакетная упаковка",
           text: "Фруктовый микс «Слива, яблоко, абрикос»"
         },
         {
+          id: 1,
           photo: "/img/3.png",
           title: "В пакетная упаковка",
           text: "Фруктовый микс «Слива, яблоко, абрикос»"
