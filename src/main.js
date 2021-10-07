@@ -4,6 +4,8 @@ import 'bootstrap-vue/dist/bootstrap-vue.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import Vue from 'vue';
 import App from './App.vue';
+import PageLoaded from './mixins/PageLoaded';
+import axios from './plugins/axios';
 import router from './router/';
 import store from './store/';
 
@@ -15,7 +17,8 @@ Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 require('./assets/css/style.css');
 require('./assets/css/media.css');
-
+Vue.mixin(PageLoaded)
+Vue.use(axios)
 
 new Vue({
   render: h => h(App),

@@ -11,7 +11,7 @@
     </div>
     <div class="image-slider swiper-container" style="padding: 10px 10px;">
       <div class="image-slider__wrapper swiper-wrapper">
-        <carousel items="5">
+        <carousel :items="5">
           <div
             @click="$router.push({ path: `products/${item.id}`})"
             class="image-slider__slide swiper-slide"

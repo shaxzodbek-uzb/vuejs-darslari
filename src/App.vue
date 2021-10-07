@@ -14,12 +14,6 @@ export default {
   components: {
     Footer,
     Header
-  },
-  watch: {
-    $route() {
-      console.log("sahifa almashdi");
-    }
   }
 };
 </script>
-    Contacts
