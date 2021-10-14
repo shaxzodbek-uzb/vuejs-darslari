@@ -43,6 +43,9 @@
             </li>
           </ul>
         </div>
+        <div>
+          <ModeSwitch />
+        </div>
         <div class="collapse navbar-collapse" id="navbarNavDropdown2">
           <ul class="navbar-nav">
             <li class="nav-item">
@@ -75,7 +78,9 @@
 </template>
 
 <script>
+import ModeSwitch from "./ModeSwitch.vue";
 export default {
+  components: { ModeSwitch },
   data() {
     return {
       links: [
