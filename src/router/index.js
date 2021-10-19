@@ -4,10 +4,15 @@ import VueRouter from 'vue-router';
 import AboutCompany from '../components/AboutCompany';
 import ProductSlider from '../components/ProductSlider';
 import Index from '../pages/Index';
+import Login from '../pages/Login';
+import Me from '../pages/Me';
 import NotFount from '../pages/NotFount';
 import Product from '../pages/Product';
-
 Vue.use(VueRouter)
+// Middleware - doim route ochilishidan oldin ishga tushadi
+// this.$api.get("auth/me").then(res => {
+//     this.user = res.data;
+// });
 const routes = [
     { path: '*', component: NotFount },
     { path: '/', component: Index },
@@ -16,6 +21,8 @@ const routes = [
         path: '/products', component: ProductSlider
     },
     { path: '/products/:id', component: Product },
+    { path: '/login', component: Login },
+    { path: '/me', component: Me },
 
 ]
 
